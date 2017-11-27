@@ -1,0 +1,13 @@
+#header {
+width: 100%;
+padding: 0px;
+position: relative;
+background-image: url('https://dl.dropboxusercontent.com/u/24174291/new-banner2.jpg');
+background-repeat: no-repeat;
+background-position: center;
+height: 400px; width: 1280px; /* height of the linked background image */
+}
+
+#header .container h1 {
+display: none;
+}

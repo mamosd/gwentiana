@@ -1,0 +1,20 @@
+    <div class="container">
+      <ul class="nav nav-tabs">
+        <li class="one"><a href="/">Description</a></li>
+        <li class="two"><a href="/news">News</a></li>
+        <li class="three"><a href="/contact">Contact</a></li>
+        <li class="four"><a href="/presskit">Press Kit</a></li>
+        <li class="five"><a href="/comments">Comments</a></li>
+        <div style="float:right; padding-right:14px; padding-top:10px;">
+            <% if user_signed_in? %>
+              Logged in as <strong><%= current_user.email %></strong>.
+              <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+              <% else %>
+              <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+              <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+            <% end %>
+        </div>
+      </ul> 
+    </div>  
+       

@@ -1,0 +1,184 @@
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"7dbfbf9e37","applicationID":"3521223","transactionName":"c1cIFktXXVldQxxSV11IBwteVkIaW1lWUl1fTRI9WFVeQFZF","queueTime":3,"applicationTime":133,"agentToken":null,"agent":"js-agent.newrelic.com/nr-632.min.js"}</script>
+
+      <script type="text/javascript">
+        var _sift = _sift || [];
+       _sift.push(['_setAccount', '08a932d91b']);
+       _sift.push(['_setUserId', '']);
+       _sift.push(['_setSessionId', 'f9b149cc7eb5a8c1694501534d6b280d']);
+       _sift.push(['_trackPageview']);
+       (function() {
+          function ls() {
+          var e = document.createElement('script');
+          e.type = 'text/javascript';
+          e.async = true;
+          e.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.siftscience.com/s.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(e, s);
+        } 
+       if (window.attachEvent) {
+         window.attachEvent('onload', ls);
+       } 
+       else {
+         window.addEventListener('load', ls, false);
+       }
+       })();
+      </script>
+  </head>
+
+  <!--[if lt IE 9 ]><body class="lt-ie9"><![endif]-->
+  <!--[if (gt IE 9)|!(IE)]><!--> <body><!--<![endif]-->
+    <div id="main">      
+        <%= render 'preorder/nav_stab' %>
+      <div id="checkout">
+        <div class="container"></div>
+          <div class="container content_box clearfix">
+            <div class="main_content">
+              <h3><a href="/gwen-tiana-the-debut-album">Gwen &amp; Tiana - The debut album</a></h3>
+                <div class="well checkout_block">
+                  <!-- <form accept-charset="UTF-8" action="/gwen-tiana-the-debut-album/checkout/payment" method="GET" id="amount_form"> --> 
+                  <%= form_tag preorder_stripe_checkout_path, :id => "amount_form" do %>  
+                    <div class="amount_section">
+                      <h4 class="amount_header">Your contribution amount: </h4>
+                      <div class="amount_input" style="position:relative">
+                        <input id="amount" type="text" name="amount" value="" data-price="1.00" />
+                        <span style="position:absolute">$</span>
+                        <i class="icon icon-info-sign show_tooltip minimum" data-placement="right" data-title="Minimum is $1.00"></i>
+                      </div>
+                    </div>
+                    <div id="reward_select">
+                      <h4>Select your reward:</h4>
+                      <ul >
+                        <% if params[:reward].present? %>
+                          <li class="reward_option active  clearfix selected" data-id=<%= params[:reward] %> data-price= <%= Service.find_by_id(params[:reward]).amount.to_s %> data-num-available="10000">
+                             <input class="reward_input" type="radio" name="reward" id= "rad" value=<%= params[:reward] %>>
+                              <label class="price">$<%= Service.find_by_id(params[:reward]).amount %></label>
+                              <div class="reward_description">
+                                <p class="title"><%= Service.find_by_id(params[:reward]).Product %></p>
+                                <p class="description"><%= Service.find_by_id(params[:reward]).Description %></p>
+                                <p class="delivery">Estimated Delivery: <%= Service.find_by_id(params[:reward]).Est_Delivery %></p>
+                              </div>
+                                <%= hidden_field_tag "title", Service.find_by_id(params[:reward].to_i).Product %>
+                                <%= hidden_field_tag "ship", Service.find_by_id(params[:reward]).international_shipping  %>
+                                <%= hidden_field_tag "deliver", Service.find_by_id(params[:reward]).Est_Delivery  %>
+                              <a class="reward_edit" href="#" style="display:none">edit</a>
+                              <script type="text/javascript">$("#rad").prop ("checked", true);</script>
+                          </li>
+                        <% else %>
+                          <li class="reward_option active clearfix" data-id="0" data-price="1.00">
+                            <input class="reward_input" type="radio" name="reward" value="0">
+                            <label class="price"></label>
+                          <a class="reward_edit" href="#" style="display:none">edit</a>
+                        </li>
+                          <% Service.all.each do |s| %> 
+                           <li class="reward_option active  clearfix" data-id=<%= s.id %> data-price=<%= s.amount.to_s%> data-num-available="10000">
+                             <input class="reward_input" type="radio" name="reward" id= "rad" value=<%= s.id %> >
+                             <label class="price">$<%= s.amount %></label>
+                             <div class="reward_description">
+                              <p class="title"><%= s.Product %></p>
+                              <p class="description"><%= s.Description %></p>
+                              <p class="delivery">Estimated Delivery: <%= s.Est_Delivery %></p>
+                             </div>
+                                <%= hidden_field_tag "title", Service.find_by_id(s.id).Product %>
+                                <%= hidden_field_tag "ship", Service.find_by_id(s.id).international_shipping  %>
+                                <%= hidden_field_tag "deliver", Service.find_by_id(s.id).Est_Delivery  %>
+                             <a class="reward_edit" href="#" style="display:none">edit</a>
+                           </li>
+                          <% end %>   
+                        <% end %>  
+                      </ul>
+                    </div>
+
+                    <div style="margin-top:25px;">
+                      <label for="reward-quantity" style="display: inline-block; margin-right: 5px;">Qty: </label>
+                      <select name="quantity" style="width:60px; margin-right:18px;" id="reward-quantity" disabled>
+                        <option value="1" selected >01</option>
+                        <option value="2"  >02</option>
+                        <option value="3"  >03</option>
+                        <option value="4"  >04</option>
+                        <option value="5"  >05</option>
+                        <option value="6"  >06</option>
+                        <option value="7"  >07</option>
+                        <option value="8"  >08</option>
+                        <option value="9"  >09</option>
+                        <option value="10"  >10</option>
+                      </select>
+                      <span class="reward-total">Reward total: <strong class="subtotal">$0.00</strong></span>
+                      <%# if user_signed_in? %>
+                      <%#= link_to "Please add address details", address_path, :id => "button"%>
+                    <%# else %>  
+                      <%#= link_to "Please add address details", new_user_session_path, :id => "button"%>
+                    <%# end %>
+                      <!-- <button type="submit" class="btn btn-primary pull-right" id="continue_to_checkout" style="margin-top:0;">Continue to checkout</button -->
+                    </div>
+                    <br/>
+                      <% if user_signed_in? %>
+                      <h4>Address Details:</h4>
+                      <p>
+                         Name:<br />
+                         <%= text_field_tag "name" %>
+                      </p>
+
+                      <p>
+                         Phone:<br />
+                         <%= text_field_tag "phone" %>
+                      </p>
+
+                      <p>
+                         House Number:<br />
+                         <%= text_field_tag "hno" %>
+                      </p>
+
+                      <p>
+                         City:<br />
+                         <%= text_field_tag "city" %>
+                      </p>
+
+                      <p>
+                         State:<br />
+                         <%= text_field_tag "state" %>
+                      </p>
+
+                      <p>
+                         Zip:<br />
+                         <%= text_field_tag "zip" %>
+                      </p>
+ 
+                      <p>
+                         Country:<br />
+                         <%= text_field_tag "country" %>
+                      </p>
+                      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_test_rKiVOdu7iWsJtIkJkbrrA0Nl"
+                        data-description="A month's subscription"
+                        data-label="Payment">
+                      </script>
+                    <% else %>
+                        <button id="myButton" style="background-image: linear-gradient(#7dc5ee,#008cdd 85%,#30a2e4);height: 30px;">Payment</button>
+
+                        <script type="text/javascript">
+                          document.getElementById("myButton").onclick = function () {
+                          location.href = "/users/sign_in";
+                          };
+                        </script>                       
+                    <!--      </form> -->
+                    <% end %>
+                  <% end %>
+                </div>
+            </div>
+
+            <div class="sidebar">
+              <div class="custom_content">
+                <p style="text-align: justify;"><img alt="" src="https://s3.amazonaws.com/crowdtiltopen/CrowdtiltOpen/uploads/ckeditor/pictures/data/000/005/486/content.png" style="width: 150px; margin-top: 5px; margin-bottom: 5px; height: 42px;"><br>
+                <span style="font-size:12px;">Vous êtes titulaires d’une carte Postifinance et vous souhaitez contribuer à notre projet. C’est très simple. Faites nous parvenir un virement bancaire sur le compte associatif de "Gwen &amp; Tiana » en précisant en objet, quel Item vous avez choisi.</span><br>
+                <span style="font-size:12px;">Votre contribution sera enregistrée sur le site dès réception de votre virement et vous recevrez un e-mail de confirmation. Notez que vous pouvez également nous faire un don si vous souhaitez nous soutenir sans contre-partie. Nous vous remercions d’avance pour votre soutien. </span></p>
+                <p> </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </body>
+
+

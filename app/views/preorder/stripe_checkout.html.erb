@@ -1,0 +1,19 @@
+ <%= render 'preorder/nav_stab' %>
+ <div class="container">
+<h2>Thanks, you paid <strong>$<%= params[:amount].to_i %></strong>!</h2>
+
+  <h4>Payment Summary</h4>
+    <div style="color: red; margin-bottom: 10px;">This campaign is in test mode, your card will not actually be charged.</div>
+  <p>
+    <strong>Date:</strong><br/> <%= DateTime.now %> <br/><br/>
+    <strong>Amount:</strong><br/> $<%= @data["amount"] %> <br/><br/>
+    <strong>Card:</strong><br/> <%= @data["card"]["brand"]%> card ************<%= @data["card"]["last4"].to_i%>
+    (<%= @data["card"]["exp_month"]%>/<%= @data["card"]["exp_year"] %>) <br/><br/>
+      <strong>Reward selected:</strong><br/> <%= params["title"]%> <br/><br/>
+
+    <strong>Payment ID:</strong><br/> <span class="payment_id"><%= @data["id"]%></span><br/><br/>
+    <strong>Charge will appear on your statement as:</strong><br/> BAL*GWEN &amp; TIANA<br/><br/>
+  </p>
+  <p class="center">An email confirmation was sent to <%= @data["source"]["name"]%></p>
+
+</div>

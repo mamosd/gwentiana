@@ -1,0 +1,19 @@
+        <div class="rewards_sidebar">
+          <h3>Rewards</h3>
+          <ul>
+            <% Service.all(:order => 'amount').each do |s| %> 
+              <li class="rewards_click">
+               <a href="/preorder/checkout_amount?reward=<%=s.id%>">
+                  <p class="price">$<%= s.amount %></p>
+                  <p class="title"><%= s.Product %></p>
+                  <p class="image"><%= image_tag s.image.url(:thumb) %></p>
+                  <p class="description"><%= s.Description %></p>
+                  <div class="reward-delivery">
+                    <p class="delivery">Estimated Delivery: <%= s.Est_Delivery %></p>
+                    <p class="shipping">International shipping - <%= s.international_shipping %></p>
+                  </div>
+                </a> 
+              </li>
+            <% end %> 
+          </ul>
+        </div>

@@ -1,0 +1,16 @@
+Hi <%= @user %>, 
+<br/><br/>
+An order has been received.
+<br/><br/><br/>
+
+Transaction Details:	 <br/><br/>
+Reward:	<%= @title %><br/><br/>
+Quantity:	<%= @quantity %><br/><br/>
+
+Subtotal:	<%= @amount %><br/><br/>
+Total charged:	$<%= @amount %><br/><br/>
+
+Card number:	****-<%= @last%><br/><br/>
+
+Your charge will appear as: BAL*GWEN & TIANA<br/><br/>
+Transaction number: <%= @transaction%>
